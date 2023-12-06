@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using StudentDiary_WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StudentDiary_WPF
+namespace StudentDiary_WPF.Views
 {
     /// <summary>
-    /// Interaction logic for AddEditStudentView.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class AddEditStudentView : MetroWindow
+    public partial class MainWindow : MetroWindow
     {
-        public AddEditStudentView()
+        public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }

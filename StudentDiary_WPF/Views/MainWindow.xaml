@@ -1,0 +1,48 @@
+﻿<mah:MetroWindow x:Class="StudentDiary_WPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:StudentDiary_WPF"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Dziennik ucznia" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Dodaj" Height="35" Width="100" Margin="5"/>
+            <Button Content="Edytuj" Height="35" Width="100" Margin="5"/>
+            <Button Content="Usuń" Height="35" Width="100" Margin="5"/>
+            <ComboBox Height="35" Width="200" Margin="5"/>
+            <Button Command="{Binding RefreshStudentsCommand}" Content="Odświerz" Height="35" Width="100" Margin="5"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" Margin="5"
+                  ItemsSource="{Binding Students}"
+                  SelectedItem="{Binding SelectedStudent}"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" Header="Imię"/>
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="Imię"/>
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Nazwisko"/>
+                <DataGridTextColumn Binding="{Binding Comments}" Header="Uwagi"/>
+                <DataGridTextColumn Binding="{Binding Math}" Header="Matematyka"/>
+                <DataGridTextColumn Binding="{Binding Technology}" Header="Technologia"/>
+                <DataGridTextColumn Binding="{Binding Physics}" Header="Fizyka"/>
+                <DataGridTextColumn Binding="{Binding PolishLang}" Header="J.polski"/>
+                <DataGridTextColumn Binding="{Binding ForeignLang}" Header="J.obcy"/>
+                <DataGridCheckBoxColumn Binding="{Binding Activities}" Header="Zaj. dod."/>
+                <DataGridTextColumn Binding="{Binding Group.Name}" Header="Grupa"/>
+                
+            </DataGrid.Columns>    
+        </DataGrid>
+
+
+    </Grid>
+</mah:MetroWindow>
