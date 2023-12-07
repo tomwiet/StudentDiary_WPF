@@ -14,11 +14,24 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Dodaj" Height="35" Width="100" Margin="5"/>
-            <Button Content="Edytuj" Height="35" Width="100" Margin="5"/>
-            <Button Content="Usuń" Height="35" Width="100" Margin="5"/>
-            <ComboBox Height="35" Width="200" Margin="5"/>
-            <Button Command="{Binding RefreshStudentsCommand}" Content="Odświerz" Height="35" Width="100" Margin="5"/>
+            <Button Content="Dodaj" Height="35" Width="100" Margin="5"
+                    Command="{Binding AddStudentCommand}"
+                    CommandParameter="{Binding SelectedStudent}"/>
+            
+            <Button Content="Edytuj" Height="35" Width="100" Margin="5"
+                    Command="{Binding EditStudentCommand}"/>
+            
+            <Button Content="Usuń" Height="35" Width="100" Margin="5"
+                    Command="{Binding DeleteStudentCommand}"/>
+            
+            <ComboBox Height="35" Width="200" Margin="5"
+                      ItemsSource="{Binding Groups}"
+                      SelectedValue = "{Binding SelectedGroupId}"
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="Id"/>
+
+            <Button Content="Odśnież" Height="35" Width="100" Margin="5"
+                    Command="{Binding RefreshStudentsCommand}"  />
         </StackPanel>
         <DataGrid Grid.Row="1" Margin="5"
                   ItemsSource="{Binding Students}"

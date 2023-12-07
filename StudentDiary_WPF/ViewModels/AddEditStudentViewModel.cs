@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentDiary_WPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,9 @@ namespace StudentDiary_WPF.ViewModels
 {
     internal class AddEditStudentViewModel : ViewModelBase
     {
+        public AddEditStudentViewModel(Student student = null)
+        {
+            
+        }
     }
 }

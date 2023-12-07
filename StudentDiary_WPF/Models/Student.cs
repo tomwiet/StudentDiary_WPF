@@ -19,6 +19,7 @@ namespace StudentDiary_WPF.Models
         public string ForeignLang { get; set; }
         public bool Activities { get; set; }
         public Group Group { get; set; }
+        public string Comments { get; set; }
 
 
 
