@@ -16,10 +16,11 @@
         <StackPanel Orientation="Horizontal">
             <Button Content="Dodaj" Height="35" Width="100" Margin="5"
                     Command="{Binding AddStudentCommand}"
-                    CommandParameter="{Binding SelectedStudent}"/>
+                    />
             
             <Button Content="Edytuj" Height="35" Width="100" Margin="5"
-                    Command="{Binding EditStudentCommand}"/>
+                    Command="{Binding EditStudentCommand}"
+                    CommandParameter="{Binding SelectedStudent}"/>
             
             <Button Content="Usuń" Height="35" Width="100" Margin="5"
                     Command="{Binding DeleteStudentCommand}"/>

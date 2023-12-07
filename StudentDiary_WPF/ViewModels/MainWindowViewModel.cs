@@ -27,7 +27,6 @@ namespace StudentDiary_WPF.ViewModels
             InitGroups();
         }
 
-       
 
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
@@ -154,7 +153,7 @@ namespace StudentDiary_WPF.ViewModels
             if (dialog != MessageDialogResult.Affirmative)
                 return;
 
-            //usuwanie ucznia z bazy
+            //todo: usuwanie ucznia z bazy
 
             RefreshDiary();
 
