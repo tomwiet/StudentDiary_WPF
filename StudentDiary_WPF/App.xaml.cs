@@ -19,7 +19,7 @@ namespace StudentDiary_WPF
             System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             var metroWindow = Current.MainWindow as MetroWindow;
-            metroWindow.ShowMessageAsync("Nieoczekiwany błąd",
+             metroWindow.ShowMessageAsync("Nieoczekiwany błąd",
                 "Wystąpił nieoczekiwany błąd." + Environment.NewLine +
                 e.Exception.Message);
 

@@ -18,8 +18,6 @@ namespace StudentDiary_WPF.ViewModels
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
 
-            throw new Exception("A to się narobiło");
-
             if (student == null) 
             {
                 Student = new Student();
