@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls.Dialogs;
 using StudentDiary_WPF.Commands;
 using StudentDiary_WPF.Models;
+using StudentDiary_WPF.Models.Wrappers;
 using StudentDiary_WPF.Views;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace StudentDiary_WPF.ViewModels
     {
         public MainWindowViewModel()
         {
+  
             AddStudentCommand = new RelayCommand(AddEditStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, canEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, canEditDeleteStudent);
@@ -33,8 +35,8 @@ namespace StudentDiary_WPF.ViewModels
         public ICommand RefreshStudentsCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
         
-        private Student _selectedStudent;
-        public Student SelectedStudent
+        private StudentWrapper _selectedStudent;
+        public StudentWrapper SelectedStudent
         {
             get { return _selectedStudent; }
             set 
@@ -44,8 +46,8 @@ namespace StudentDiary_WPF.ViewModels
             }
         }
 
-        private ObservableCollection<Student> _students;
-        public ObservableCollection<Student> Students
+        private ObservableCollection<StudentWrapper> _students;
+        public ObservableCollection<StudentWrapper> Students
         {
             get { return _students; }
             set
@@ -68,9 +70,9 @@ namespace StudentDiary_WPF.ViewModels
             }
         }
 
-        private ObservableCollection<Group> _groups;
+        private ObservableCollection<GroupWrapper> _groups;
 
-        public ObservableCollection<Group> Groups
+        public ObservableCollection<GroupWrapper> Groups
         {
             get { 
                 return _groups; 
@@ -89,40 +91,40 @@ namespace StudentDiary_WPF.ViewModels
         
         private void RefreshDiary()
         {
-            Students = new ObservableCollection<Student>
+            Students = new ObservableCollection<StudentWrapper>
             {
-                new Student
+                new StudentWrapper
                 {
                     Id=1,
                     FirstName="Jan",
                     LastName="Kowalski",
-                    Group = new Group { Id = 1}
+                    Group = new GroupWrapper { Id = 1}
                 },
-                new Student
+                new StudentWrapper
                 {
                     Id=2,
                     FirstName="Piotr",
                     LastName="Nowak",
-                    Group = new Group { Id = 2}
+                    Group = new GroupWrapper { Id = 2}
                 },
-                new Student
+                new StudentWrapper
                 {
                     Id=3,
                     FirstName="Adam",
                     LastName="Abacki",
-                    Group = new Group { Id = 1}
+                    Group = new GroupWrapper { Id = 1}
                 }
 
             };
         }
         private void InitGroups()
         {
-            Groups = new ObservableCollection<Group> 
+            Groups = new ObservableCollection<GroupWrapper> 
             {
-                new Group {Id=0,Name="Wszyscy"},
-                new Group {Id=1,Name="1A"},
-                new Group {Id=2,Name="1B"},
-                new Group {Id=3,Name="1C"},
+                new GroupWrapper {Id=0,Name="Wszyscy"},
+                new GroupWrapper {Id=1,Name="1A"},
+                new GroupWrapper {Id=2,Name="1B"},
+                new GroupWrapper {Id=3,Name="1C"},
             
             };
 
@@ -131,7 +133,7 @@ namespace StudentDiary_WPF.ViewModels
         }
         private void AddEditStudent(object obj)
         {
-            var addEditStudentWindow = new AddEditStudentView(obj as Student);
+            var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
             addEditStudentWindow.Closed += AddEditStudentWindow_Closed;
             addEditStudentWindow.ShowDialog();
         }

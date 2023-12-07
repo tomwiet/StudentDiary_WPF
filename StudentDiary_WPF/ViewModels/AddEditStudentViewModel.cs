@@ -1,5 +1,6 @@
 ﻿using StudentDiary_WPF.Commands;
 using StudentDiary_WPF.Models;
+using StudentDiary_WPF.Models.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,14 +14,14 @@ namespace StudentDiary_WPF.ViewModels
 {
     internal class AddEditStudentViewModel : ViewModelBase
     {
-        public AddEditStudentViewModel(Student student = null)
+        public AddEditStudentViewModel(StudentWrapper student = null)
         {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
 
             if (student == null) 
             {
-                Student = new Student();
+                Student = new StudentWrapper();
             }
             else 
             { 
@@ -36,8 +37,8 @@ namespace StudentDiary_WPF.ViewModels
         public ICommand CloseCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
         
-        private Student _student;
-        public Student Student
+        private StudentWrapper _student;
+        public StudentWrapper Student
         {
             get { 
                 return _student; 
@@ -74,9 +75,9 @@ namespace StudentDiary_WPF.ViewModels
             }
         }
 
-        private ObservableCollection<Group> _groups;
+        private ObservableCollection<GroupWrapper> _groups;
 
-        public ObservableCollection<Group> Groups
+        public ObservableCollection<GroupWrapper> Groups
         {
             get
             {
@@ -123,12 +124,12 @@ namespace StudentDiary_WPF.ViewModels
         }
         private void InitGroups()
         {
-            Groups = new ObservableCollection<Group>
+            Groups = new ObservableCollection<GroupWrapper>
             {
-                new Group {Id=0,Name="--brak--"},
-                new Group {Id=1,Name="1A"},
-                new Group {Id=2,Name="1B"},
-                new Group {Id=3,Name="1C"},
+                new GroupWrapper {Id=0,Name="--brak--"},
+                new GroupWrapper {Id=1,Name="1A"},
+                new GroupWrapper {Id=2,Name="1B"},
+                new GroupWrapper {Id=3,Name="1C"},
 
             };
 
