@@ -1,5 +1,6 @@
 ﻿using StudentDiary_WPF.Commands;
 using StudentDiary_WPF.Models;
+using StudentDiary_WPF.Models.Domains;
 using StudentDiary_WPF.Models.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace StudentDiary_WPF.ViewModels
 {
     internal class AddEditStudentViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
         public AddEditStudentViewModel(StudentWrapper student = null)
         {
             CloseCommand = new RelayCommand(Close);
@@ -75,9 +77,9 @@ namespace StudentDiary_WPF.ViewModels
             }
         }
 
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get
             {
@@ -122,16 +124,13 @@ namespace StudentDiary_WPF.ViewModels
         {
             window.Close();
         }
+      
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-                new GroupWrapper {Id=0,Name="--brak--"},
-                new GroupWrapper {Id=1,Name="1A"},
-                new GroupWrapper {Id=2,Name="1B"},
-                new GroupWrapper {Id=3,Name="1C"},
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "--brak--" });
 
-            };
+            Groups = new ObservableCollection<Group>(groups);
 
             Student.Group.Id = 0;
 
