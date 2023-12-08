@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace StudentDiary_WPF.ViewModels
 {
-    internal class AddEditStudentViewModel : ViewModelBase
+    public class AddEditStudentViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
         public AddEditStudentViewModel(StudentWrapper student = null)

@@ -35,8 +35,7 @@
                     Command="{Binding RefreshStudentsCommand}"  />
 
             <Button Content="Ustawienia" Height="35" Width="100" Margin="5"
-                    Command="{Binding EditSettingsCommand}"
-                    CommandParameter="{Binding ActualUserSettings}"/>
+                    Command="{Binding EditSettingsCommand}"/>
         </StackPanel>
         <DataGrid Grid.Row="1" Margin="5"
                   ItemsSource="{Binding Students}"

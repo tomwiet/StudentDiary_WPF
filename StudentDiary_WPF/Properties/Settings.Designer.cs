@@ -25,7 +25,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
         public string DbServerAddress {
             get {
                 return ((string)(this["DbServerAddress"]));
@@ -37,7 +37,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
         public string DbServerName {
             get {
                 return ((string)(this["DbServerName"]));
@@ -49,7 +49,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
         public string DbName {
             get {
                 return ((string)(this["DbName"]));
@@ -61,7 +61,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
         public string DbUser {
             get {
                 return ((string)(this["DbUser"]));
@@ -73,7 +73,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
         public string DbPassword {
             get {
                 return ((string)(this["DbPassword"]));

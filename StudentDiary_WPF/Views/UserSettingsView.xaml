@@ -6,6 +6,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:StudentDiary_WPF.Views"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"         
         Title="Ustawienia użytkownika" Height="250" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,18 +23,23 @@
         </Grid.RowDefinitions>
         
         <Label Content="Adres serwera" Grid.Row="0" Margin="5"/>
-        <TextBox Grid.Column="1" Margin="5"/>
+        <TextBox Grid.Column="1" Margin="5"
+                 Text="{Binding DbServerAddress}"/>
         
         <Label Content="Nazwa serwera" Grid.Row="1" Margin="5"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5"
+                 Text="{Binding DbServerName}"/>
         
-        <Label Content="Nazwa serwera" Grid.Row="2" Margin="5"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"/>
+        <Label Content="Nazwa bazy" Grid.Row="2" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"
+                 Text="{Binding DbName}"/>
         
         <Label Content="Nazwa użytkownika" Grid.Row="3" Margin="5"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5"
+                 Text="{Binding DbUser}"/>
         
         <Label Content="Hasło użytkownika" Grid.Row="4" Margin="5"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="5"
+                 Text="{Binding DbPassword}"/>
     </Grid>
 </mah:MetroWindow>

@@ -21,5 +21,10 @@ namespace StudentDiary_WPF.Models
                 Settings.Default.DbServerAddress = value;
             }
         }
+        public string DbServerName
+        {
+            get { return Settings.Default.DbServerName; }
+            set { Settings.Default.DbServerName = value; }
+        }
     }
 }

@@ -158,8 +158,7 @@ namespace StudentDiary_WPF.ViewModels
 
         private void EditUserSettings(object obj)
         {
-            var edidtUserSettingsWindow = new UserSettingsView(obj as UserSettings);
-            
+            var edidtUserSettingsWindow = new UserSettingsView();
             edidtUserSettingsWindow.ShowDialog();
         }
 
