@@ -93,31 +93,9 @@ namespace StudentDiary_WPF.ViewModels
         
         private void RefreshDiary()
         {
-            Students = new ObservableCollection<StudentWrapper>
-            {
-                new StudentWrapper
-                {
-                    Id=1,
-                    FirstName="Jan",
-                    LastName="Kowalski",
-                    Group = new GroupWrapper { Id = 1}
-                },
-                new StudentWrapper
-                {
-                    Id=2,
-                    FirstName="Piotr",
-                    LastName="Nowak",
-                    Group = new GroupWrapper { Id = 2}
-                },
-                new StudentWrapper
-                {
-                    Id=3,
-                    FirstName="Adam",
-                    LastName="Abacki",
-                    Group = new GroupWrapper { Id = 1}
-                }
-
-            };
+            Students = new ObservableCollection<StudentWrapper>(
+                _repository.GetStudents(SelectedGroupId));
+            
         }
         private void InitGroups()
         {
@@ -153,7 +131,7 @@ namespace StudentDiary_WPF.ViewModels
             if (dialog != MessageDialogResult.Affirmative)
                 return;
 
-            //todo: usuwanie ucznia z bazy
+            _repository.DeleteStudent(_selectedStudent.Id);
 
             RefreshDiary();
 

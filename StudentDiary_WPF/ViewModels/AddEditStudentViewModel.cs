@@ -107,12 +107,12 @@ namespace StudentDiary_WPF.ViewModels
 
         private void UpdateStudent()
         {
-            //todo: zapis danych do bazy
+            _repository.UpdateStudent(Student);
         }
 
         private void AddStudent()
         {
-            //todo aktualizacja danych w bazie
+            _repository.AddStudent(Student);
         }
 
         private void Close(object obj)
