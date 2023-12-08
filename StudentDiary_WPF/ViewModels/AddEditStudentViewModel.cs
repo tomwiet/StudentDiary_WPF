@@ -96,6 +96,8 @@ namespace StudentDiary_WPF.ViewModels
 
         private void Confirm(object obj)
         {
+            if(!Student.isValid)
+                return; 
            
             if (!IsUpdate)
                 AddStudent();
