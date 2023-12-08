@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using StudentDiary_WPF.Models.Converters;
 using StudentDiary_WPF.Models;
+using System.Runtime.Remoting.Contexts;
 
 namespace StudentDiary_WPF
 {
@@ -28,6 +29,7 @@ namespace StudentDiary_WPF
                 var students = context
                     .Students
                     .Include(x => x.Group)
+                    .Include(x=>x.Ratings)
                     .AsQueryable();
 
                 if (groupId !=0) 
@@ -39,7 +41,7 @@ namespace StudentDiary_WPF
                     .ToList();
             }
         }
-
+        
         public void AddStudent(StudentWrapper studentWrapper)
         {
             var student = studentWrapper.ToDao();
@@ -69,7 +71,6 @@ namespace StudentDiary_WPF
                 context.SaveChanges();
             }
         }
-
         public void UpdateStudent(StudentWrapper studentWrapper)
         {
             var student = studentWrapper.ToDao();
@@ -77,52 +78,78 @@ namespace StudentDiary_WPF
 
             using (var context = new ApplicationDbContext())
             {
-                var studentToUpdate = context.Students.Find(student.Id);
-                studentToUpdate.FirstName = student.FirstName;
-                studentToUpdate.LastName = student.LastName;
-                studentToUpdate.Activities = student.Activities;
-                studentToUpdate.Comments = student.Comments;
-                studentToUpdate.GroupId = student.GroupId;
+                UpdateStudentProperties(context,student);
 
-                var studentsRatings = context
-                    .Ratings
-                    .Where(x=>x.StudentId == student.Id)
-                    .ToList();
+                var studentsRatings = GetStudentsRatings(context, student);
 
-                var mathRatings = studentsRatings
-                    .Where(x=>x.SubjectId == (int)Subject.Math)
-                    .Select(x=>x.Rate);
+                UpdateRate(student,ratings,context,studentsRatings,
+                    Subject.Math);
+                UpdateRate(student,ratings,context,studentsRatings,
+                    Subject.Physics);
+                UpdateRate(student,ratings,context,studentsRatings,
+                    Subject.Technology);
+                UpdateRate(student,ratings,context,studentsRatings,
+                    Subject.PolishLang);
+                UpdateRate(student,ratings,context,studentsRatings,
+                    Subject.ForeignLang);
 
-                var newMathRatings = ratings
-                    .Where(x=>x.SubjectId == (int)Subject.Math)
-                    .Select(x=>x.Rate);
+                context.SaveChanges();
 
-                var mathRaitingsToDelete = mathRatings.Except(newMathRatings).ToList();
-                var mathRaitingsToAdd = newMathRatings.Except(mathRatings).ToList();
-
-                mathRaitingsToDelete.ForEach(x =>
-                    {
-                        var ratingToDelete = context.Ratings.First(y =>
-                            y.Rate == x &&
-                            y.StudentId == student.Id &&
-                            y.SubjectId == (int)Subject.Math);
-
-                        context.Ratings.Remove(ratingToDelete);
-                    });
-
-                mathRaitingsToAdd.ForEach(x =>
-                {
-                    var ratingToAdd = new Rating
-                    {
-                        Rate = x,
-                        StudentId = student.Id,
-                        SubjectId = (int)Subject.Math
-                    };
-
-                    context.Ratings.Add(ratingToAdd);
-                });
             }
+        }
+        private static List<Rating> GetStudentsRatings(ApplicationDbContext context, Student student)
+        {
+            return  context
+                    .Ratings
+                    .Where(x => x.StudentId == student.Id)
+                    .ToList();
+        }
+        private static void UpdateStudentProperties(ApplicationDbContext context,Student student)
+        {
+            var studentToUpdate = context.Students.Find(student.Id);
+            studentToUpdate.FirstName = student.FirstName;
+            studentToUpdate.LastName = student.LastName;
+            studentToUpdate.Activities = student.Activities;
+            studentToUpdate.Comments = student.Comments;
+            studentToUpdate.GroupId = student.GroupId;
+        }
+        private static void UpdateRate(Student student,List<Rating> newRatings,
+            ApplicationDbContext context,List<Rating> studentsRatings,Subject subject)
+        {
+            var subRatings = studentsRatings
+                .Where(x => x.SubjectId == (int)subject)
+                .Select(x => x.Rate);
+
+            var newSubRatings = newRatings
+                .Where(x => x.SubjectId == (int)subject)
+                .Select(x => x.Rate);
+
+            var subRaitingsToDelete = subRatings.Except(newSubRatings).ToList();
+            var subRaitingsToAdd = newSubRatings.Except(subRatings).ToList();
+
+            subRaitingsToDelete.ForEach(x =>
+            {
+                var ratingToDelete = context.Ratings.First(y =>
+                    y.Rate == x &&
+                    y.StudentId == student.Id &&
+                    y.SubjectId == (int)subject);
+
+                context.Ratings.Remove(ratingToDelete);
+            });
+
+            subRaitingsToAdd.ForEach(x =>
+            {
+                var ratingToAdd = new Rating
+                {
+                    Rate = x,
+                    StudentId = student.Id,
+                    SubjectId = (int)subject
+                };
+
+                context.Ratings.Add(ratingToAdd);
+            });
 
         }
+       
     }
 }

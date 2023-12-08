@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentDiary_WPF.Models
 {
-    internal enum Subject
+    public enum Subject
     {
         Math=1,Technology,Physics,PolishLang,ForeignLang
     }

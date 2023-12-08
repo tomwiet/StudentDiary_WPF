@@ -102,6 +102,10 @@
     <Compile Include="Migrations\202312080729353_SetLastNameMaxlegthAndIsRequiredInStudentsTable.designer.cs">
       <DependentUpon>202312080729353_SetLastNameMaxlegthAndIsRequiredInStudentsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312081233237_ForgotenMigration.cs" />
+    <Compile Include="Migrations\202312081233237_ForgotenMigration.designer.cs">
+      <DependentUpon>202312081233237_ForgotenMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Configurations\GroupConfiguration.cs" />
     <Compile Include="Models\Configurations\RatingConfiguration.cs" />
@@ -151,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312080729353_SetLastNameMaxlegthAndIsRequiredInStudentsTable.resx">
       <DependentUpon>202312080729353_SetLastNameMaxlegthAndIsRequiredInStudentsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312081233237_ForgotenMigration.resx">
+      <DependentUpon>202312081233237_ForgotenMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
