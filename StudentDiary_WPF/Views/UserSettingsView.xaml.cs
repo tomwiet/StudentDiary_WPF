@@ -1,4 +1,6 @@
 ﻿using MahApps.Metro.Controls;
+using StudentDiary_WPF.Models;
+using StudentDiary_WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +22,10 @@ namespace StudentDiary_WPF.Views
     /// </summary>
     public partial class UserSettingsView : MetroWindow
     {
-        public UserSettingsView()
+        public UserSettingsView(UserSettings userSettings)
         {
             InitializeComponent();
+            DataContext = new UserSettingsViewModel(userSettings);
         }
     }
 }

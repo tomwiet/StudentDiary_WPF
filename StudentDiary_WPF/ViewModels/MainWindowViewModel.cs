@@ -26,16 +26,17 @@ namespace StudentDiary_WPF.ViewModels
             EditStudentCommand = new RelayCommand(AddEditStudent, canEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, canEditDeleteStudent);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
+            EditSettingsCommand = new RelayCommand(EditUserSettings);
 
             RefreshDiary();
             InitGroups();
         }
 
-
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
         public ICommand RefreshStudentsCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
+        public ICommand EditSettingsCommand { get; set; }
         
         private StudentWrapper _selectedStudent;
         public StudentWrapper SelectedStudent
@@ -84,6 +85,19 @@ namespace StudentDiary_WPF.ViewModels
                 OnPropertychanged();
             }
         }
+        private UserSettings _actualUserSettings;
+
+        public UserSettings ActualUserSettings
+        {
+            get { 
+                return _actualUserSettings; 
+            }
+            set { 
+                _actualUserSettings = value;
+                OnPropertychanged();
+            }
+        }
+
 
 
         private void RefreshStudents(object obj)
@@ -142,9 +156,18 @@ namespace StudentDiary_WPF.ViewModels
             return SelectedStudent != null;
         }
 
-        
+        private void EditUserSettings(object obj)
+        {
+            var edidtUserSettingsWindow = new UserSettingsView(obj as UserSettings);
+            
+            edidtUserSettingsWindow.ShowDialog();
+        }
 
-        
+
+
+
+
+
 
     }
 }
