@@ -1,0 +1,39 @@
+﻿<mah:MetroWindow x:Class="StudentDiary_WPF.Views.UserSettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:StudentDiary_WPF.Views"
+        mc:Ignorable="d"
+        Title="Ustawienia użytkownika" Height="250" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Label Content="Adres serwera" Grid.Row="0" Margin="5"/>
+        <TextBox Grid.Column="1" Margin="5"/>
+        
+        <Label Content="Nazwa serwera" Grid.Row="1" Margin="5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5"/>
+        
+        <Label Content="Nazwa serwera" Grid.Row="2" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"/>
+        
+        <Label Content="Nazwa użytkownika" Grid.Row="3" Margin="5"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5"/>
+        
+        <Label Content="Hasło użytkownika" Grid.Row="4" Margin="5"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="5"/>
+    </Grid>
+</mah:MetroWindow>

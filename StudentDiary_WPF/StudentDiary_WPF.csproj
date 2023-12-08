@@ -79,6 +79,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\UserSettingsView.xaml.cs">
+      <DependentUpon>UserSettingsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AddEditStudentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,9 +118,11 @@
     <Compile Include="Models\Domains\Rating.cs" />
     <Compile Include="Models\Domains\Student.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\UserSettings.cs" />
     <Compile Include="Models\Wrappers\GroupWrapper.cs" />
     <Compile Include="Models\Wrappers\StudentWrapper.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\AddEditStudentViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -132,6 +137,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UserSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
