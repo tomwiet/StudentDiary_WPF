@@ -26,7 +26,7 @@ namespace StudentDiary_WPF.Views
         public UserSettingsView()
         {
             InitializeComponent();
-            DataContext = Settings.Default;
+            DataContext = new UserSettingsViewModel();
         }
     }
 }

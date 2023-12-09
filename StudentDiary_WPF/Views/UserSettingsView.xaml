@@ -6,8 +6,9 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:StudentDiary_WPF.Views"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"         
-        Title="Ustawienia użytkownika" Height="250" Width="400">
+        WindowStartupLocation="CenterScreen"
+        Name="EditSettingsWindow"
+        Title="Ustawienia użytkownika" Height="270" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -41,5 +42,14 @@
         <Label Content="Hasło użytkownika" Grid.Row="4" Margin="5"/>
         <TextBox Grid.Row="4" Grid.Column="1" Margin="5"
                  Text="{Binding DbPassword}"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="5" Grid.Column="1">
+            <Button Content="Anuluj" Height="35" Width="100" Margin="5"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding ElementName=EditSettingsWindow}"/>
+            <Button Content="Zatwierdź" Height="35" Width="100" Margin="5"
+                    Command="{Binding ConfirmCommand}"
+                    CommandParameter="{Binding ElementName=EditSettingsWindow}"/>
+        </StackPanel>
+        
     </Grid>
 </mah:MetroWindow>
