@@ -1,8 +1,11 @@
 using StudentDiary_WPF.Models.Configurations;
 using StudentDiary_WPF.Models.Domains;
+using StudentDiary_WPF.Properties;
+using StudentDiary_WPF.ViewModels;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 
 namespace StudentDiary_WPF
 {
@@ -10,7 +13,8 @@ namespace StudentDiary_WPF
     {
         
         public ApplicationDbContext()
-            : base("name=ApplicationDbContext")
+        : base(Settings.Default.ConnetionString)
+        //:base()
         {
 
         }

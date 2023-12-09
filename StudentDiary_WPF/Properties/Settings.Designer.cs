@@ -25,7 +25,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        [global::System.Configuration.DefaultSettingValueAttribute("(local)")]
         public string DbServerAddress {
             get {
                 return ((string)(this["DbServerAddress"]));
@@ -37,7 +37,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SQLEXPRESS")]
         public string DbServerName {
             get {
                 return ((string)(this["DbServerName"]));
@@ -49,7 +49,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        [global::System.Configuration.DefaultSettingValueAttribute("StudentDiary")]
         public string DbName {
             get {
                 return ((string)(this["DbName"]));
@@ -61,7 +61,7 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DiaryUser")]
         public string DbUser {
             get {
                 return ((string)(this["DbUser"]));
@@ -73,13 +73,26 @@ namespace StudentDiary_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Diary")]
         public string DbPassword {
             get {
                 return ((string)(this["DbPassword"]));
             }
             set {
                 this["DbPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=(local)\\SQLEXPRESS;Database=StudentDiary;User Id=DiaryUser;Password=Diary;" +
+            "")]
+        public string ConnetionString {
+            get {
+                return ((string)(this["ConnetionString"]));
+            }
+            set {
+                this["ConnetionString"] = value;
             }
         }
     }

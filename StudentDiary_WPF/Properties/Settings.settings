@@ -3,19 +3,22 @@
   <Profiles />
   <Settings>
     <Setting Name="DbServerAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">null</Value>
+      <Value Profile="(Default)">(local)</Value>
     </Setting>
     <Setting Name="DbServerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">null</Value>
+      <Value Profile="(Default)">SQLEXPRESS</Value>
     </Setting>
     <Setting Name="DbName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">null</Value>
+      <Value Profile="(Default)">StudentDiary</Value>
     </Setting>
     <Setting Name="DbUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">null</Value>
+      <Value Profile="(Default)">DiaryUser</Value>
     </Setting>
     <Setting Name="DbPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">null</Value>
+      <Value Profile="(Default)">Diary</Value>
+    </Setting>
+    <Setting Name="ConnetionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Server=(local)\SQLEXPRESS;Database=StudentDiary;User Id=DiaryUser;Password=Diary;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
