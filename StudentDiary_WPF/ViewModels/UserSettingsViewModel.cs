@@ -113,12 +113,7 @@ namespace StudentDiary_WPF.ViewModels
             ConnetionString = SetConnectionString();
             Settings.Default.Save();
             CloseWindow(obj as Window);
-
-
-            var metroWindow = Application.Current.MainWindow as MetroWindow;
-            metroWindow.ShowMessageAsync("Info",ConnetionString,MessageDialogStyle.Affirmative);
-
-            
+   
         }
 
         private void Close(object obj)

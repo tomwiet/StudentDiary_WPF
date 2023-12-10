@@ -39,6 +39,7 @@ namespace StudentDiary_WPF.ViewModels
                 RefreshDiary();
                 InitGroups();
             }
+            
             ConnectionErrorText = SqlHelper.ConnectionErrorMessage;
         }
 
@@ -180,30 +181,28 @@ namespace StudentDiary_WPF.ViewModels
         }
         private void EditUserSettings(object obj)
         {
-            var edidtUserSettingsWindow = new UserSettingsView();
-            edidtUserSettingsWindow.Closed += EdidtUserSettingsWindow_Closed;
-            edidtUserSettingsWindow.ShowDialog();
+            var editUserSettingsWindow = new UserSettingsView();
+            editUserSettingsWindow.Closed += EdidtUserSettingsWindow_Closed;
+            editUserSettingsWindow.ShowDialog();
+
+            editUserSettingsWindow.Closed -= EdidtUserSettingsWindow_Closed;
         }
         private void EdidtUserSettingsWindow_Closed(object sender, EventArgs e)
         {
-            
-            var conn = SqlHelper.IsServerConnected();
-            if (!conn.isConnected)
-            {
-                Students = null;
-                IsGroupEmpty = true;
-                
-
-            }
-            else
-            {
-                //if (Students == null)
-                    IsGroupEmpty = false;
-                    RefreshDiary();
-                    InitGroups();
-            }
-            ConnectionErrorText = SqlHelper.ConnectionErrorMessage;
-   
+                var conn = SqlHelper.IsServerConnected();
+                if (!conn.isConnected)
+                {
+                    Students = null;
+                    IsGroupEmpty = true;
+                }
+                else
+                {
+                     IsGroupEmpty = false;
+                     RefreshDiary();
+                     InitGroups();
+                }
+                ConnectionErrorText = SqlHelper.ConnectionErrorMessage;
+               
         }
     }
 }

@@ -186,6 +186,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DbScripts\202312080729353_SetLastNameMaxlegthAndIsRequiredInStudentsTable.sql" />
+    <SplashScreen Include="Pictures\DiarySplash.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
