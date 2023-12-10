@@ -10,6 +10,7 @@ namespace StudentDiary_WPF
 {
     public static class SqlHelper
     {
+        public static string ConnectionErrorMessage = string.Empty;
         public static (bool isConnected, string sqlErrorMessage) IsServerConnected()
         {
             using (SqlConnection connection = new SqlConnection(Settings.Default.ConnetionString))
@@ -17,11 +18,16 @@ namespace StudentDiary_WPF
                 try
                 {
                     connection.Open();
+                    ConnectionErrorMessage = string.Empty;
                     return (true, "");
                 }
                 catch (SqlException ex)
                 {
-                    return (false, ex.Message);
+                    
+                    ConnectionErrorMessage = $"Nie mozna się połaczyc z baza danych"                    
+                        + $"{System.Environment.NewLine}"                    
+                        + $"Sprawdz ustawienia";
+                        return (false, ex.Message);
                 }
             }
         }

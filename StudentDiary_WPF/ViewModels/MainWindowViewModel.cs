@@ -33,13 +33,13 @@ namespace StudentDiary_WPF.ViewModels
             EditSettingsCommand = new RelayCommand(EditUserSettings);
             
             var conn = SqlHelper.IsServerConnected();
-            
+
             if (conn.isConnected)
             {
                 RefreshDiary();
                 InitGroups();
-            } 
-
+            }
+            ConnectionErrorText = SqlHelper.ConnectionErrorMessage;
         }
 
         public ICommand AddStudentCommand { get; set; }
@@ -71,7 +71,6 @@ namespace StudentDiary_WPF.ViewModels
         }
 
         private int _selectedGroupId;
-
         public int SelectedGroupId
         {
             get { 
@@ -84,7 +83,6 @@ namespace StudentDiary_WPF.ViewModels
         }
 
         private ObservableCollection<Group> _groups;
-
         public ObservableCollection<Group> Groups
         {
             get { 
@@ -95,14 +93,28 @@ namespace StudentDiary_WPF.ViewModels
                 OnPropertychanged();
             }
         }
-        private bool _isGroupEmpty;
 
+        private bool _isGroupEmpty;
         public bool IsGroupEmpty
         {
             get { return _isGroupEmpty; }
             set 
             { 
                 _isGroupEmpty = !value;
+                OnPropertychanged();
+            }
+        }
+        private string _connectionErrorText;
+
+        public string ConnectionErrorText
+        {
+            get 
+            { 
+                return _connectionErrorText; 
+            }
+            set 
+            { 
+                _connectionErrorText = value;
                 OnPropertychanged();
             }
         }
@@ -181,14 +193,16 @@ namespace StudentDiary_WPF.ViewModels
                 Students = null;
                 IsGroupEmpty = true;
                 
+
             }
             else
             {
-                if (Students == null)
+                //if (Students == null)
                     IsGroupEmpty = false;
                     RefreshDiary();
                     InitGroups();
             }
+            ConnectionErrorText = SqlHelper.ConnectionErrorMessage;
    
         }
     }
