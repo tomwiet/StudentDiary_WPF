@@ -42,12 +42,6 @@ namespace StudentDiary_WPF.ViewModels
 
         }
 
-        private bool canAddRefreshStudent(object obj)
-        {
-            var conn = SqlHelper.IsServerConnected();
-            return conn.isConnected; 
-        }
-
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
         public ICommand RefreshStudentsCommand { get; set; }
@@ -102,17 +96,6 @@ namespace StudentDiary_WPF.ViewModels
             }
         }
         
-        
-
-
-
-        private void RefreshStudents(object obj)
-        {
-            RefreshDiary();
-            if(Groups == null)
-                InitGroups();
-        }
-        
         private void RefreshDiary()
         {
             Students = new ObservableCollection<StudentWrapper>(
@@ -135,12 +118,10 @@ namespace StudentDiary_WPF.ViewModels
             addEditStudentWindow.Closed += AddEditStudentWindow_Closed;
             addEditStudentWindow.ShowDialog();
         }
-
         private void AddEditStudentWindow_Closed(object sender, EventArgs e)
         {
             RefreshDiary();
         }
-
         private async Task DeleteStudent(object obj)
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
@@ -158,28 +139,49 @@ namespace StudentDiary_WPF.ViewModels
             RefreshDiary();
 
         }
-
+        private void RefreshStudents(object obj)
+        {
+            RefreshDiary();
+            if (Groups == null)
+                InitGroups();
+        }
         private bool canEditDeleteStudent(object obj)
         {
             return SelectedStudent != null;
         }
-
+        private bool canAddRefreshStudent(object obj)
+        {
+            var conn = SqlHelper.IsServerConnected();
+            return conn.isConnected;
+        }
         private void EditUserSettings(object obj)
         {
             var edidtUserSettingsWindow = new UserSettingsView();
             edidtUserSettingsWindow.Closed += EdidtUserSettingsWindow_Closed;
             edidtUserSettingsWindow.ShowDialog();
         }
-
         private void EdidtUserSettingsWindow_Closed(object sender, EventArgs e)
         {
+            
             var conn = SqlHelper.IsServerConnected();
             if (!conn.isConnected)
             {
                 Students = null;
-                Groups = null;
+                Groups = new ObservableCollection<Group>
+                {
+                    new Group { Id = 0, Name = "--brak--" }
+                };
+                SelectedGroupId = 0;
             }
-                
+            else
+            {
+                if (Students == null)
+                    RefreshDiary();
+                    InitGroups();
+            }
+
+            
+            
         }
     }
 }
