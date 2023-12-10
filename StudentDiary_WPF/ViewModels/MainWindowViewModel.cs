@@ -4,10 +4,13 @@ using StudentDiary_WPF.Commands;
 using StudentDiary_WPF.Models;
 using StudentDiary_WPF.Models.Domains;
 using StudentDiary_WPF.Models.Wrappers;
+using StudentDiary_WPF.Properties;
 using StudentDiary_WPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,20 +19,33 @@ using System.Windows.Input;
 
 namespace StudentDiary_WPF.ViewModels
 {
-    internal class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
+        
         public MainWindowViewModel()
         {
-  
-            AddStudentCommand = new RelayCommand(AddEditStudent);
+
+            AddStudentCommand = new RelayCommand(AddEditStudent,canAddRefreshStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, canEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, canEditDeleteStudent);
-            RefreshStudentsCommand = new RelayCommand(RefreshStudents);
+            RefreshStudentsCommand = new RelayCommand(RefreshStudents,canAddRefreshStudent);
             EditSettingsCommand = new RelayCommand(EditUserSettings);
+            
+            var conn = SqlHelper.IsServerConnected();
+            
+            if (conn.isConnected)
+            {
+                RefreshDiary();
+                InitGroups();
+            } 
 
-            RefreshDiary();
-            InitGroups();
+        }
+
+        private bool canAddRefreshStudent(object obj)
+        {
+            var conn = SqlHelper.IsServerConnected();
+            return conn.isConnected; 
         }
 
         public ICommand AddStudentCommand { get; set; }
@@ -37,7 +53,7 @@ namespace StudentDiary_WPF.ViewModels
         public ICommand RefreshStudentsCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
         public ICommand EditSettingsCommand { get; set; }
-        
+
         private StudentWrapper _selectedStudent;
         public StudentWrapper SelectedStudent
         {
@@ -85,24 +101,16 @@ namespace StudentDiary_WPF.ViewModels
                 OnPropertychanged();
             }
         }
-        private UserSettings _actualUserSettings;
-
-        public UserSettings ActualUserSettings
-        {
-            get { 
-                return _actualUserSettings; 
-            }
-            set { 
-                _actualUserSettings = value;
-                OnPropertychanged();
-            }
-        }
+        
+        
 
 
 
         private void RefreshStudents(object obj)
         {
             RefreshDiary();
+            if(Groups == null)
+                InitGroups();
         }
         
         private void RefreshDiary()
@@ -159,14 +167,19 @@ namespace StudentDiary_WPF.ViewModels
         private void EditUserSettings(object obj)
         {
             var edidtUserSettingsWindow = new UserSettingsView();
+            edidtUserSettingsWindow.Closed += EdidtUserSettingsWindow_Closed;
             edidtUserSettingsWindow.ShowDialog();
         }
 
-
-
-
-
-
-
+        private void EdidtUserSettingsWindow_Closed(object sender, EventArgs e)
+        {
+            var conn = SqlHelper.IsServerConnected();
+            if (!conn.isConnected)
+            {
+                Students = null;
+                Groups = null;
+            }
+                
+        }
     }
 }

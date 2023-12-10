@@ -20,7 +20,6 @@ namespace StudentDiary_WPF.ViewModels
 {
     public class UserSettingsViewModel : ViewModelBase
     {
-        private string _userConnectionString;
         
         public UserSettingsViewModel()
         {
