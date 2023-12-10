@@ -29,7 +29,9 @@
                       ItemsSource="{Binding Groups}"
                       SelectedValue = "{Binding SelectedGroupId}"
                       DisplayMemberPath="Name"
-                      SelectedValuePath="Id"/>
+                      SelectedValuePath="Id"
+                      Visibility="{Binding IsGroupEmpty, 
+                                    Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
             <Button Content="Odśnież" Height="35" Width="100" Margin="5"
                     Command="{Binding RefreshStudentsCommand}"  />

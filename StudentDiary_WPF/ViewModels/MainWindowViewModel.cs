@@ -95,7 +95,18 @@ namespace StudentDiary_WPF.ViewModels
                 OnPropertychanged();
             }
         }
-        
+        private bool _isGroupEmpty;
+
+        public bool IsGroupEmpty
+        {
+            get { return _isGroupEmpty; }
+            set 
+            { 
+                _isGroupEmpty = !value;
+                OnPropertychanged();
+            }
+        }
+
         private void RefreshDiary()
         {
             Students = new ObservableCollection<StudentWrapper>(
@@ -104,6 +115,7 @@ namespace StudentDiary_WPF.ViewModels
         }
         private void InitGroups()
         {
+            IsGroupEmpty = false;
             var groups = _repository.GetGroups();
             groups.Insert(0,new Group{Id=0,Name="Wszyscy"});
 
@@ -167,21 +179,17 @@ namespace StudentDiary_WPF.ViewModels
             if (!conn.isConnected)
             {
                 Students = null;
-                Groups = new ObservableCollection<Group>
-                {
-                    new Group { Id = 0, Name = "--brak--" }
-                };
-                SelectedGroupId = 0;
+                IsGroupEmpty = true;
+                
             }
             else
             {
                 if (Students == null)
+                    IsGroupEmpty = false;
                     RefreshDiary();
                     InitGroups();
             }
-
-            
-            
+   
         }
     }
 }
