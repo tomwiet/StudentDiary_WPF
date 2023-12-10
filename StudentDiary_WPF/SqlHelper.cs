@@ -24,9 +24,9 @@ namespace StudentDiary_WPF
                 catch (SqlException ex)
                 {
                     
-                    ConnectionErrorMessage = $"Nie mozna się połaczyc z baza danych"                    
+                    ConnectionErrorMessage = $"Nie mozna się połączyc z bazą danych"                    
                         + $"{System.Environment.NewLine}"                    
-                        + $"Sprawdz ustawienia";
+                        + $"Sprawdź ustawienia";
                         return (false, ex.Message);
                 }
             }
